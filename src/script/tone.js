@@ -3,9 +3,11 @@ class Tone {
 		this.context = context;
 		
 		this.output = context.createGain();
+		this.output.gain.value = 0;
 		this.output.connect(context.destination);
 		
 		this.oscillator = context.createOscillator();
+		this.oscillator.connect(this.output);
 		this.oscillator.start();
 	}
 	
@@ -19,10 +21,9 @@ class Tone {
 	
 	attack(velocity) {
 		this.output.gain.setValueAtTime(velocity / 127, this.context.currentTime);
-		this.oscillator.connect(this.output);
 	}
 	
 	release() {
-		this.oscillator.disconnect(this.output);
+		this.output.gain.setValueAtTime(0, this.context.currentTime);
 	}
 }
