@@ -1,13 +1,4 @@
-class Tone {
-	static get type() {
-		return {
-			SINE: 'sine',
-			SQUARE: 'square',
-			TRIANGLE: 'triangle',
-			SAWTOOTH: 'sawtooth',
-		}
-	}
-	
+class Tone {	
 	constructor(context) {
 		this.context = context;
 		this.oscillator = this.context.createOscillator();

@@ -1,3 +1,6 @@
-const controller = new Controller();
-controller.tuning = EqualTemperament;
-controller.type = Tone.type.SAWTOOTH;
+const context = new AudioContext();
+const voice = new Voice(context);
+const midi = new MIDI(voice);
+
+voice.tuning = EqualTemperament;
+voice.type = Voice.type.SAWTOOTH;
