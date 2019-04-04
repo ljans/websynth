@@ -18,17 +18,21 @@ class MIDI {
 	
 		switch(command) {
 			
-			// Note on (or off if velocity = 0)
+			// "Note on"
 			case 144: {
-				if(velocity) {
-					this.voice.tone[note].attack(velocity);
-					break;
-				} // Cascade to next case
+				this.voice.tone[note].attack(velocity);
+				break;
 			}
 			
-			// Note off
+			// "Note off"
 			case 128: {
 				this.voice.tone[note].release();
+				break;
+			}
+			
+			// Clock
+			case 254: {
+				break;
 			}
 		}
 	}
