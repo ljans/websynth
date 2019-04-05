@@ -1,4 +1,7 @@
 class Voice {
+	get oscillators() {
+		return this.constructor.oscillators || 2;
+	}
 	
 	static get type() {
 		return {
@@ -10,14 +13,19 @@ class Voice {
 	}
 	
 	constructor(context) {
-		this.tone = Array(128).fill().map(() => new Tone(context));
+		this.context = context;
+		this.counter = 0;
+		
+		this.transposition = 0;
+		
+		this.tone = [];
+		for(let i=0; i<this.oscillators; i++) this.tone[i] = new Tone(this);
+		
+		this.key = [];
+		for(let i=0; i<128; i++) this.key[i] = new Key(this, i);
 	}
 	
-	set tuning(tuning) {
-		this.tone.forEach((tone, note) => tone.frequency = tuning.getFrequency(note));
+	getTone() {
+		return this.tone[this.counter++ % this.oscillators];
 	}
-	
-	set type(type) {
-		this.tone.forEach(tone => tone.type = type);
-	}	
 }

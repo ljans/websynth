@@ -20,13 +20,13 @@ class MIDI {
 			
 			// "Note on"
 			case 144: {
-				this.voice.tone[note].attack(velocity);
+				this.voice.key[note].attack(velocity / 127);
 				break;
 			}
 			
 			// "Note off"
 			case 128: {
-				this.voice.tone[note].release();
+				this.voice.key[note].release();
 				break;
 			}
 			
