@@ -12,16 +12,16 @@ class Keyboard {
 	// Bind a note to a tone
 	bind(note) {
 		
-		// Get a free and the oldest tone
+		// Get a free and the longest not used tone
 		let free, oldest;
 		for(const tone of this.voice.tone) {
 			if(!free && !tone.note) free = tone;
-			if(!oldest || oldest.time > tone.time) oldest = tone;
+			if(!oldest || oldest.used > tone.used) oldest = tone;
 		}
 		
 		// Use the free tone or force-cycle the oldest
 		const tone = free || oldest;
-		tone.time = this.voice.context.currentTime;
+		tone.used = this.voice.context.currentTime;
 		tone.note = note;
 		return tone;
 	}
