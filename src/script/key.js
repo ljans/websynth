@@ -6,12 +6,13 @@ class Key {
 	}
 	
 	attack(velocity) {
-		if(!this.tone) this.keyboard.bind(this);
-		this.tone.start(velocity);
+		const tone = this.keyboard.bind(this);
+		if(tone) tone.start(velocity);
 	}
 	
 	release() {
-		if(this.tone) this.tone.stop();
+		const tone = this.keyboard.unbind(this);
+		if(tone) tone.stop();
 	}
 	
 }
