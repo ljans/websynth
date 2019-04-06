@@ -1,18 +1,17 @@
 class Key {
 	
-	constructor(voice, note) {
-		this.voice = voice;
+	constructor(keyboard, note) {
+		this.keyboard = keyboard;
 		this.note = note;
 	}
 	
 	attack(velocity) {
-		this.tone = this.voice.getTone();
-		this.tone.note = this.note;
+		if(!this.tone) this.keyboard.bind(this);
 		this.tone.start(velocity);
 	}
 	
 	release() {
-		this.tone.stop();
+		if(this.tone) this.tone.stop();
 	}
 	
 }

@@ -1,7 +1,7 @@
 class MIDI {
 	
-	constructor(voice) {
-		this.voice = voice;
+	constructor(keyboard) {
+		this.keyboard = keyboard;
 		
 		// Listen to MIDI messages
 		navigator.requestMIDIAccess().then(access => {
@@ -20,13 +20,13 @@ class MIDI {
 			
 			// "Note on"
 			case 144: {
-				this.voice.key[note].attack(velocity / 127);
+				this.keyboard.key[note].attack(velocity / 127);
 				break;
 			}
 			
 			// "Note off"
 			case 128: {
-				this.voice.key[note].release();
+				this.keyboard.key[note].release();
 				break;
 			}
 			
