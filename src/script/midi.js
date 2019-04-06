@@ -1,21 +1,22 @@
 class MIDI {
 	
+	// Construct with keyboard
 	constructor(keyboard) {
 		this.keyboard = keyboard;
 		
-		// Listen to MIDI messages
+		// Access MIDI inputs
 		navigator.requestMIDIAccess().then(access => {
 			access.inputs.forEach(input => {
-				input.onmidimessage = message => this.handle(message);
+				
+				// Process MIDI messages
+				input.onmidimessage = message => this.process(message);
 			});
-		}, error => {
-			console.error(error);
-		});
+		}, console.error);
 	}
 	
-	handle(message) {
+	// Process MIDI messages
+	process(message) {
 		const [command, note, velocity] = message.data;
-	
 		switch(command) {
 			
 			// "Note on"
