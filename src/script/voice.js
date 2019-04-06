@@ -1,10 +1,5 @@
 class Voice {
 	
-	// Get the number of tones
-	get tones() {
-		return this.constructor.tones || 2;
-	}
-	
 	// Setup tone types
 	static get type() {
 		return {
@@ -22,6 +17,6 @@ class Voice {
 		
 		// Setup tones
 		this.tone = [];
-		for(let i=0; i<this.tones; i++) this.tone[i] = new Tone(this);
+		for(let i=0; i<4; i++) this.tone[i] = new Tone(this);
 	}
 }
