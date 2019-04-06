@@ -7,7 +7,7 @@ class Tone {
 		// Setup output gain regulator
 		this.output = this.voice.context.createGain();
 		this.output.gain.value = 0;
-		this.output.connect(this.voice.context.destination);
+		this.output.connect(this.voice.collector);
 		
 		// Setup oscillator
 		this.oscillator = this.voice.context.createOscillator();
