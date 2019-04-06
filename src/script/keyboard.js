@@ -21,7 +21,7 @@ class Keyboard {
 		
 		// Use the free tone or force-cycle the oldest
 		const tone = free || oldest;
-		tone.time = new Date();
+		tone.time = this.voice.context.currentTime;
 		tone.note = note;
 		return tone;
 	}
