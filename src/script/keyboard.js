@@ -1,8 +1,6 @@
 class Keyboard {
 	
 	constructor(voice) {		
-		this.counter = 0;
-		
 		this.binding = voice.tone.map(tone => ({tone: tone}));
 		
 		this.key = [];
@@ -10,15 +8,14 @@ class Keyboard {
 	}
 	
 	bind(key) {
-		let next;
+		let free, oldest;
 		for(const binding of this.binding) {
-			if(!binding.key) {
-				next = binding;
-				break;
-			}
+			if(!free && !binding.key) free = binding;
+			if(!oldest || oldest.time > binding.time) oldest = binding;
 		}
 		
-		const binding = next || this.binding[this.counter++ % this.binding.length];
+		const binding = free || oldest;
+		binding.time = new Date();
 		binding.key = key;
 		binding.tone.note = key.note;
 		return binding.tone;
