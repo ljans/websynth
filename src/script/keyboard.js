@@ -2,39 +2,36 @@ class Keyboard {
 	
 	// Construct with voice
 	constructor(voice) {
-		
-		// Setup bindings based on available tones in voices		
-		this.binding = voice.tone.map(tone => ({tone: tone}));
+		this.voice = voice;
 		
 		// Setup keys
 		this.key = [];
 		for(let i=0; i<128; i++) this.key[i] = new Key(this, i);
 	}
 	
-	// Bind a key to a tone
-	bind(key) {
+	// Bind a note to a tone
+	bind(note) {
 		
-		// Get a free and the oldest binding
+		// Get a free and the oldest tone
 		let free, oldest;
-		for(const binding of this.binding) {
-			if(!free && !binding.key) free = binding;
-			if(!oldest || oldest.time > binding.time) oldest = binding;
+		for(const tone of this.voice.tone) {
+			if(!free && !tone.note) free = tone;
+			if(!oldest || oldest.time > tone.time) oldest = tone;
 		}
 		
-		// Use the free binding or force-cycle the oldest
-		const binding = free || oldest;
-		binding.time = new Date();
-		binding.key = key;
-		binding.tone.note = key.note;
-		return binding.tone;
+		// Use the free tone or force-cycle the oldest
+		const tone = free || oldest;
+		tone.time = new Date();
+		tone.note = note;
+		return tone;
 	}
 	
-	// Unbind a key from a tone
-	unbind(key) {
-		for(const binding of this.binding) {
-			if(binding.key == key) {
-				delete binding.key;
-				return binding.tone;
+	// Unbind a note from a tone
+	unbind(note) {
+		for(const tone of this.voice.tone) {
+			if(tone.note == note) {
+				delete tone.note;
+				return tone;
 			}
 		}
 	}
