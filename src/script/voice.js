@@ -17,9 +17,10 @@ class Voice {
 		
 		// Setup tone collector
 		this.collector = context.createGain();
+		this.collector.gain.value = 0.5;
 		
 		// Setup tones
 		this.tone = [];
-		for(let i=0; i<4; i++) this.tone[i] = new Tone(this);
+		for(let i=0; i<8; i++) this.tone[i] = new Tone(this);
 	}
 }

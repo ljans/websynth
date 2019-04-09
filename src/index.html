@@ -10,9 +10,21 @@
 	<script src="script/key.js" defer></script>
 	<script src="script/keyboard.js" defer></script>
 	<script src="script/system.js" defer></script>
+	<script src="script/visualizer.js" defer></script>
+	<script src="script/canvas.js" defer></script>
 	<script src="script/tuning/equalTemperament.js" defer></script>
 	<script src="script/init.js" defer></script>
+	
+	<style>
+		canvas {
+			border: 1px solid #555;
+			width: 300px;
+			height: 200px;
+		}
+	</style>
 </head>
 <body>
+	<canvas id="timeDomain"></canvas>
+	<canvas id="frequencyDomain"></canvas>
 </body>
 </html>
