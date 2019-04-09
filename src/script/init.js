@@ -9,8 +9,8 @@ system.chain({output: voice.collector});
 system.chain(visualizer);
 system.chain({input: context.destination});
 
-voice.tuning = EqualTemperament;
-voice.type = Voice.type.SINE;
+voice.tuning = MeantoneTemperament;
+voice.type = Voice.type.SAWTOOTH;
 
 visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
