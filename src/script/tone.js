@@ -28,7 +28,7 @@ class Tone {
 	
 	// Update the oscillator properties
 	update() {
-		this.oscillator.type = this.voice.type;
+		this.oscillator.setPeriodicWave(this.voice.instrument.wave);
 		this.oscillator.frequency.value = this.voice.tuning.getFrequency(this.note + this.voice.transposition);
 	}
 }

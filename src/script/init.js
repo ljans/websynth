@@ -10,7 +10,7 @@ system.chain(visualizer);
 system.chain({input: context.destination});
 
 voice.tuning = MeantoneTemperament;
-voice.type = Voice.type.SAWTOOTH;
+voice.instrument = new Organ(context);
 
 visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
