@@ -17,6 +17,8 @@ const tunings = [
 const instruments = [
 	new Sine(context),
 	new Organ(context),
+	new Oboe(context),
+	new Bass(context),
 ];
 
 voice.tuning = tunings[0];
