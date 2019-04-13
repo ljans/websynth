@@ -16,6 +16,9 @@ const tunings = [
 
 const instruments = [
 	new Sine(context),
+	new Sawtooth(context),
+	new Square(context),
+	new Triangle(context),
 	new Organ(context),
 	new Oboe(context),
 	new Bass(context),
