@@ -4,9 +4,11 @@ const keyboard = new Keyboard(voice);
 const midi = new MIDI(keyboard);
 const system = new System();
 const visualizer = new Visualizer(context);
+const reverb = new Reverb(context);
 
 system.chain({output: voice.collector});
 system.chain(visualizer);
+system.chain(reverb);
 system.chain({input: context.destination});
 
 const tunings = [
@@ -26,6 +28,9 @@ const instruments = [
 
 voice.tuning = tunings[0];
 voice.instrument = instruments[0];
+
+
+reverb.load('church');
 
 
 const instrumentSelector = document.querySelector('select.instruments');
