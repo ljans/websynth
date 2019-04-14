@@ -4,11 +4,11 @@ const keyboard = new Keyboard(voice);
 const midi = new MIDI(keyboard);
 const system = new System();
 const visualizer = new Visualizer(context);
-const reverb = new Reverb(context);
+const convoler = new Convoler(context);
 
 system.chain({output: voice.collector});
 system.chain(visualizer);
-system.chain(reverb);
+system.chain(convoler);
 system.chain({input: context.destination});
 
 const tunings = [
@@ -26,21 +26,26 @@ const instruments = [
 	new Bass(context),
 ];
 
+const reverbs = [
+	new Church(context),
+	new Factory(context),
+];
+
 voice.tuning = tunings[0];
 voice.instrument = instruments[0];
+convoler.effect = reverbs[0];
 
-
-reverb.load('church');
-
-
-const instrumentSelector = document.querySelector('select.instruments');
+const instrumentSelector = document.querySelector('select.instrument');
 instrumentSelector.innerHTML = instruments.map((instrument, index) => `<option value="${index}">${instrument.constructor.name}</option>`).join('');
 instrumentSelector.addEventListener('change', function(){ voice.instrument = instruments[this.value]; });
 
-const tuningSelector = document.querySelector('select.tunings');
+const tuningSelector = document.querySelector('select.tuning');
 tuningSelector.innerHTML = tunings.map((tuning, index) => `<option value="${index}">${tuning.name}</option>`).join('');
 tuningSelector.addEventListener('change', function(){ voice.tuning = tunings[this.value]; });
 
+const reverbSelector = document.querySelector('select.reverb');
+reverbSelector.innerHTML = reverbs.map((reverb, index) => `<option value="${index}">${reverb.constructor.name}</option>`).join('');
+reverbSelector.addEventListener('change', function(){ convoler.effect = reverbs[this.value]; });
 
 visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
