@@ -8,8 +8,8 @@ const convoler = new Convoler(context);
 const speaker = new Speaker(context);
 
 system.chain(voice);
-system.chain(visualizer);
 system.chain(convoler);
+system.chain(visualizer);
 system.chain(speaker);
 
 const tunings = [
@@ -29,7 +29,8 @@ const instruments = [
 
 const reverbs = [
 	new Church(context),
-	new Factory(context),
+	new IronTub(context),
+	new Telephone(context),
 ];
 
 voice.tuning = tunings[0];
