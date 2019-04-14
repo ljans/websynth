@@ -4,11 +4,11 @@ const keyboard = new Keyboard(voice);
 const midi = new MIDI(keyboard);
 const system = new System();
 const visualizer = new Visualizer(context);
-const convoler = new Convoler(context);
+const convolver = new Convolver(context);
 const speaker = new Speaker(context);
 
 system.chain(voice);
-system.chain(convoler);
+system.chain(convolver);
 system.chain(visualizer);
 system.chain(speaker);
 
@@ -35,8 +35,8 @@ const reverbs = [
 
 voice.tuning = tunings[0];
 voice.instrument = instruments[0];
-convoler.effect = reverbs[0];
-convoler.enabled = true;
+convolver.effect = reverbs[0];
+convolver.enabled = true;
 
 const instrumentSelector = document.querySelector('select.instrument');
 instrumentSelector.innerHTML = instruments.map((instrument, index) => `<option value="${index}">${instrument.constructor.name}</option>`).join('');
@@ -48,11 +48,11 @@ tuningSelector.addEventListener('change', function(){ voice.tuning = tunings[thi
 
 const reverbSelector = document.querySelector('select.reverb');
 reverbSelector.innerHTML = reverbs.map((reverb, index) => `<option value="${index}">${reverb.constructor.name}</option>`).join('');
-reverbSelector.addEventListener('change', function(){ convoler.effect = reverbs[this.value]; });
+reverbSelector.addEventListener('change', function(){ convolver.effect = reverbs[this.value]; });
 
 const toggleReverb = document.querySelector('input.toggleReverb');
-toggleReverb.checked = convoler.enabled;
-toggleReverb.addEventListener('change', function(){ convoler.enabled = this.checked; });
+toggleReverb.checked = convolver.enabled;
+toggleReverb.addEventListener('change', function(){ convolver.enabled = this.checked; });
 
 visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
