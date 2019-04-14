@@ -29,21 +29,14 @@
 	<script src="script/reverb/ironTub.js" defer></script>
 	<script src="script/reverb/telephone.js" defer></script>
 	<script src="script/speaker.js" defer></script>
+	<script src="script/controller.js" defer></script>
 	<script src="script/init.js" defer></script>
 	
-	<style>
-		canvas {
-			border: 1px solid #555;
-			width: 300px;
-			height: 200px;
-		}
-		
-		fieldset {
-			display: inline-block;
-		}
-	</style>
+	<link rel="stylesheet" href="style/design.css">
 </head>
 <body>
+	<div id="start">Click to start</div>
+
 	<div>
 		<fieldset>
 			<legend>Instrument</legend>
@@ -65,5 +58,7 @@
 
 	<canvas id="timeDomain"></canvas>
 	<canvas id="frequencyDomain"></canvas>
+	
+	<div id="manual"></div>
 </body>
 </html>

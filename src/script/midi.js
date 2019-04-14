@@ -3,15 +3,6 @@ class MIDI {
 	// Construct with keyboard
 	constructor(keyboard) {
 		this.keyboard = keyboard;
-		
-		// Access MIDI inputs
-		navigator.requestMIDIAccess().then(access => {
-			access.inputs.forEach(input => {
-				
-				// Process MIDI messages
-				input.onmidimessage = message => this.process(message);
-			});
-		}, console.error);
 	}
 	
 	// Process MIDI messages
