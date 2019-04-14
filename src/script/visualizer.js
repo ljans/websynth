@@ -2,7 +2,8 @@ class Visualizer {
 	
 	// Construct with context
 	constructor(context) {
-		this.input = this.output = this.analyser = context.createAnalyser();
+		this.analyser = context.createAnalyser();
+		this.input = this.output = [this.analyser];
 		
 		// Setup FFT size and buffer
 		this.analyser.fftSize = 1024;

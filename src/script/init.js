@@ -5,11 +5,12 @@ const midi = new MIDI(keyboard);
 const system = new System();
 const visualizer = new Visualizer(context);
 const convoler = new Convoler(context);
+const speaker = new Speaker(context);
 
-system.chain({output: voice.collector});
+system.chain(voice);
 system.chain(visualizer);
 system.chain(convoler);
-system.chain({input: context.destination});
+system.chain(speaker);
 
 const tunings = [
 	EqualTemperament,

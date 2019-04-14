@@ -8,6 +8,7 @@ class Voice {
 		// Setup tone collector
 		this.collector = this.context.createGain();
 		this.collector.gain.value = 0.5;
+		this.output = [this.collector];
 		
 		// Setup tones
 		this.tone = [];

@@ -3,7 +3,8 @@ class Convoler {
 	// Construct with context
 	constructor(context) {
 		this.context = context;
-		this.input = this.output = this.convoler = this.context.createConvolver();
+		this.convoler = this.context.createConvolver();
+		this.input = this.output = [this.convoler];
 	}
 	
 	// Load effect buffer
