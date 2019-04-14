@@ -26,6 +26,11 @@ document.querySelector('#start').addEventListener('click', function(){
 	toggleReverb.checked = controller.convolver.enabled;
 	toggleReverb.addEventListener('change', function(){ controller.convolver.enabled = this.checked; });
 	
+	// Setup transposition
+	const transpositionInput = document.querySelector('input.transposition');
+	transpositionInput.value = controller.voice.transposition;
+	transpositionInput.addEventListener('input', function(){ controller.voice.transposition = parseInt(this.value); });
+	
 	// Setup visualizer
 	controller.visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 	controller.visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
