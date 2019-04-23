@@ -14,4 +14,14 @@ class Voice {
 		this.tone = [];
 		for(let i=0; i<8; i++) this.tone[i] = new Tone(this);
 	}
+	
+	// Set volume
+	set volume(volume) {
+		this.collector.gain.setValueAtTime(volume, this.context.currentTime);
+	}
+	
+	// Get volume
+	get volume() {
+		return this.collector.gain.value;
+	}
 }

@@ -31,6 +31,11 @@ document.querySelector('#start').addEventListener('click', function(){
 	transpositionInput.value = controller.voice.transposition;
 	transpositionInput.addEventListener('input', function(){ controller.voice.transposition = parseInt(this.value); });
 	
+	// Setup volume slider
+	const volumeSlider = document.querySelector('input.volume');
+	volumeSlider.value = controller.voice.volume;
+	volumeSlider.addEventListener('input', function(){ controller.voice.volume = this.value; });
+	
 	// Setup visualizer
 	controller.visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 	controller.visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
