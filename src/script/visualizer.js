@@ -21,7 +21,7 @@ class Visualizer {
 		// Get and draw data
 		this.analyser.getByteTimeDomainData(this.buffer);
 		this.buffer.forEach((value, index) => {
-			canvas.lineTo(index/this.buffer.length, value/256);
+			canvas.lineTo(index/(this.buffer.length-1), value/256);
 		});
 		canvas.endPath();
 	}
@@ -41,8 +41,10 @@ class Visualizer {
 	
 	// Draw loop
 	draw() {
-		if(this.timeDomain) this.refreshTimeDomain(this.timeDomain);
-		if(this.frequencyDomain) this.refreshFrequencyDomain(this.frequencyDomain);
+		if(!this.freeze) {
+			if(this.timeDomain) this.refreshTimeDomain(this.timeDomain);
+			if(this.frequencyDomain) this.refreshFrequencyDomain(this.frequencyDomain);
+		}
 		requestAnimationFrame(() => this.draw());
 	}
 }

@@ -39,6 +39,9 @@ document.querySelector('#start').addEventListener('click', function(){
 	// Setup visualizer
 	controller.visualizer.timeDomain = new Canvas(document.querySelector('#timeDomain'));
 	controller.visualizer.frequencyDomain = new Canvas(document.querySelector('#frequencyDomain'));
+	document.querySelectorAll('canvas').forEach(canvas => {
+		canvas.addEventListener('click', () => controller.visualizer.freeze = !controller.visualizer.freeze);
+	});
 	
 	// Setup manual
 	const manual = document.querySelector('#manual');
