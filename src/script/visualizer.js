@@ -7,7 +7,8 @@ class Visualizer {
 		
 		// Setup FFT size and buffer
 		this.analyser.fftSize = 1024;
-		this.buffer = new Uint8Array(this.analyser.frequencyBinCount);
+		this.signalBuffer = new Uint8Array(this.analyser.fftSize);
+		this.frequencyBuffer = new Uint8Array(this.analyser.frequencyBinCount); // = fftSize/2
 		
 		// Start drawing
 		this.draw();
@@ -19,9 +20,9 @@ class Visualizer {
 		canvas.beginPath();
 		
 		// Get and draw data
-		this.analyser.getByteTimeDomainData(this.buffer);
-		this.buffer.forEach((value, index) => {
-			canvas.lineTo(index/(this.buffer.length-1), value/256);
+		this.analyser.getByteTimeDomainData(this.signalBuffer);
+		this.signalBuffer.forEach((value, index) => {
+			canvas.lineTo(index/(this.signalBuffer.length-1), value/256);
 		});
 		canvas.endPath();
 	}
@@ -31,10 +32,10 @@ class Visualizer {
 		canvas.clear();
 		
 		// Get and draw data
-		this.analyser.getByteFrequencyData(this.buffer);		
-		this.buffer.forEach((value, index) => {
-			const x = Math.log(index+1) / Math.log(this.buffer.length);
-			const width = Math.sqrt(1 / this.buffer.length) / Math.pow(Math.log(index+3), 2);
+		this.analyser.getByteFrequencyData(this.frequencyBuffer);		
+		this.frequencyBuffer.forEach((value, index) => {
+			const x = Math.log(index+1) / Math.log(this.frequencyBuffer.length);
+			const width = Math.sqrt(1 / this.frequencyBuffer.length) / Math.pow(Math.log(index+3), 2);
 			canvas.fillRect(x, 1, width, -value/256);
 		});
 	}

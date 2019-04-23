@@ -10,7 +10,7 @@ class Canvas {
 		this.canvas.height = 1000;
 		
 		// Setup styling
-		this.context.lineWidth = 10;
+		this.context.lineWidth = 5;
 		this.context.strokeStyle = '#5cddd0';
 		this.context.fillStyle = '#5cddd0';
 	}
