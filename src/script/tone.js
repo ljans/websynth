@@ -18,12 +18,19 @@ class Tone {
 	// Start the tone with a volume
 	start(volume) {
 		this.update();
-		this.output.gain.setValueAtTime(volume, this.voice.context.currentTime);
+		
+		// Fade in, somehow needs a volume > 0 at start + set volume at end in case the fading fails
+		this.output.gain.setValueAtTime(0.0001, this.voice.context.currentTime);
+		this.output.gain.exponentialRampToValueAtTime(volume, this.voice.context.currentTime + 0.01);
+		this.output.gain.setValueAtTime(volume, this.voice.context.currentTime + 0.01);
 	}
 	
 	// Stop the tone
 	stop() {
-		this.output.gain.setValueAtTime(0, this.voice.context.currentTime);
+		
+		// Fade out
+		this.output.gain.exponentialRampToValueAtTime(0.0001, this.voice.context.currentTime + 0.01);
+		this.output.gain.setValueAtTime(0, this.voice.context.currentTime + 0.01);
 	}
 	
 	// Update the oscillator properties
