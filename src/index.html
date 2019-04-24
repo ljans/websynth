@@ -29,6 +29,7 @@
 	<script src="script/reverb/ironTub.js" defer></script>
 	<script src="script/reverb/telephone.js" defer></script>
 	<script src="script/speaker.js" defer></script>
+	<script src="script/filter.js" defer></script>
 	<script src="script/controller.js" defer></script>
 	<script src="script/init.js" defer></script>
 	
@@ -51,13 +52,47 @@
 			<input class="transposition" type="number" min="-12" max="12">
 		</fieldset>
 		<fieldset>
-			<legend>Reverb</legend>
-			<input type="checkbox" class="toggleReverb">
+			<legend>
+				<label>
+					<input type="checkbox" class="toggleReverb">
+					<span>Reverb</span>
+				</label>
+			</legend>
 			<select class="reverb"></select>
 		</fieldset>
 		<fieldset>
 			<legend>Volume</legend>
 			<input type="range" class="volume" step="any" min="0" max="1">
+		</fieldset>
+		<fieldset>
+			<legend>
+				<div>
+					<input type="checkbox" class="toggleFilter">
+					<select class="filter">
+						<option>lowpass</option>
+						<option>highpass</option>
+						<option>bandpass</option>
+						<option>lowshelf</option>
+						<option>highshelf</option>
+						<option>peaking</option>
+						<option>notch</option>
+						<option>allpass</option>
+					</select>
+					<span>Filter</span>
+				</div>
+			</legend>
+			<div class="frequency item">
+				<div>Freq: <span></span> Hz</div>
+				<input type="range" step="any" min="0" max="1">
+			</div>
+			<div class="quality item">
+				<div>Qual: <span></span> (dB)</div>
+				<input type="range" step="any" min="0" max="20">
+			</div>
+			<div class="gain item">
+				<div>Gain: <span></span> dB</div>
+				<input type="range" step="any" min="0" max="10">
+			</div>
 		</fieldset>
 	</div>
 

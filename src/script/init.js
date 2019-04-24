@@ -43,6 +43,47 @@ document.querySelector('#start').addEventListener('click', function(){
 		canvas.addEventListener('click', () => controller.visualizer.freeze = !controller.visualizer.freeze);
 	});
 	
+	// Setup filter toggle
+	const toggleFilter = document.querySelector('input.toggleFilter');
+	toggleFilter.checked = controller.filter.enabled;
+	toggleFilter.addEventListener('change', function(){ controller.filter.enabled = this.checked; });
+	
+	// Setup filter selector
+	const filterSelector = document.querySelector('select.filter');
+	filterSelector.value = controller.filter.type;
+	filterSelector.addEventListener('change', function(){ controller.filter.type = this.value; });
+	
+	// Setup filter frequency
+	const frequencyValue = document.querySelector('.frequency span');
+	const frequencySlider = document.querySelector('.frequency input');
+	frequencyValue.innerHTML = controller.filter.frequency;
+	frequencySlider.addEventListener('input', function(){
+		const min = 10;
+		const max = 24000;
+		controller.filter.frequency = Math.round(min*Math.pow(max/min, parseFloat(this.value)));;
+		frequencyValue.innerHTML = controller.filter.frequency;
+	});
+	
+	// Setup filter quality
+	const qualityValue = document.querySelector('.quality span');
+	const qualitySlider = document.querySelector('.quality input');
+	qualityValue.innerHTML = controller.filter.quality;
+	qualitySlider.value = controller.filter.quality;
+	qualitySlider.addEventListener('input', function(){
+		controller.filter.quality = parseFloat(this.value);
+		qualityValue.innerHTML = Math.round(controller.filter.quality*100)/100;
+	});
+	
+	// Setup filter gain
+	const gainValue = document.querySelector('.gain span');
+	const gainSlider = document.querySelector('.gain input');
+	gainValue.innerHTML = controller.filter.gain;
+	gainSlider.value = controller.filter.gain;
+	gainSlider.addEventListener('input', function(){
+		controller.filter.gain = parseFloat(this.value);
+		gainValue.innerHTML = Math.round(controller.filter.gain*100)/100;
+	});
+	
 	// Setup manual
 	const manual = document.querySelector('#manual');
 	manual.addEventListener('contextmenu', e => e.preventDefault());

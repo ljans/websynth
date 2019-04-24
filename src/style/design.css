@@ -26,6 +26,10 @@ fieldset {
 	display: inline-block;
 }
 
+.item {
+	display: inline-block;
+}
+
 #manual .key {
 	display: inline-block;
 }

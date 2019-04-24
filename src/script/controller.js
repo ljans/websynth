@@ -10,10 +10,12 @@ class Controller {
 		this.visualizer = new Visualizer(this.context);
 		this.convolver = new Convolver(this.context);
 		this.speaker = new Speaker(this.context);
+		this.filter = new Filter(this.context);
 		
 		// Setup system
 		this.system.chain(this.voice);
 		this.system.chain(this.convolver);
+		this.system.chain(this.filter);
 		this.system.chain(this.visualizer);
 		this.system.chain(this.speaker);
 		
@@ -46,5 +48,6 @@ class Controller {
 		this.voice.instrument = this.instruments[0];
 		this.convolver.effect = this.reverbs[0];
 		this.convolver.enabled = true;
+		this.filter.enabled = false;
 	}
 }
