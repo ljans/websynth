@@ -1,6 +1,6 @@
 # WebSynth
 
-Project for a Bachelor Thesis about Music & Math
+Project for a Bachelor Thesis about Music & Math\
 Try it [here](https://ljans.github.io/WebSynth/src/) (Touchscreen or MIDI-device required)
 
 ## Links
