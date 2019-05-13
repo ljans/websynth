@@ -12,9 +12,13 @@ class MIDI {
 			
 			// "Note on"
 			case 144: {
-				this.keyboard.key[note].attack(velocity / 127);
-				break;
-			}
+				if(velocity > 0) {
+					this.keyboard.key[note].attack(velocity / 127);
+					break;
+				}
+				
+				// Cascade to "Note off" for velocity = 0
+ 			}
 			
 			// "Note off"
 			case 128: {
