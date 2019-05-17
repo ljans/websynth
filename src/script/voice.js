@@ -24,4 +24,9 @@ class Voice {
 	get volume() {
 		return this.collector.gain.value;
 	}
+	
+	// Update tones
+	update() {
+		this.tone.forEach(tone => tone.update());
+	}
 }

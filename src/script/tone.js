@@ -3,6 +3,7 @@ class Tone {
 	// Construct with voice
 	constructor(voice) {
 		this.voice = voice;
+		this.note = 0;
 		
 		// Setup output gain regulator
 		this.output = this.voice.context.createGain();

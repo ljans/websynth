@@ -9,12 +9,18 @@ document.querySelector('#start').addEventListener('click', function(){
 	// Setup instrument selector
 	const instrumentSelector = document.querySelector('select.instrument');
 	instrumentSelector.innerHTML = controller.instruments.map((instrument, index) => `<option value="${index}">${instrument.constructor.name}</option>`).join('');
-	instrumentSelector.addEventListener('change', function(){ controller.voice.instrument = controller.instruments[this.value]; });
+	instrumentSelector.addEventListener('change', function(){
+		controller.voice.instrument = controller.instruments[this.value];
+		controller.voice.update();
+	});
 	
 	// Setup tuning selector
 	const tuningSelector = document.querySelector('select.tuning');
 	tuningSelector.innerHTML = controller.tunings.map((tuning, index) => `<option value="${index}">${tuning.name}</option>`).join('');
-	tuningSelector.addEventListener('change', function(){ controller.voice.tuning = controller.tunings[this.value]; });
+	tuningSelector.addEventListener('change', function(){
+		controller.voice.tuning = controller.tunings[this.value];
+		controller.voice.update();
+	});
 	
 	// Setup reverb selector
 	const reverbSelector = document.querySelector('select.reverb');
@@ -29,7 +35,10 @@ document.querySelector('#start').addEventListener('click', function(){
 	// Setup transposition
 	const transpositionInput = document.querySelector('input.transposition');
 	transpositionInput.value = controller.voice.transposition;
-	transpositionInput.addEventListener('input', function(){ controller.voice.transposition = parseInt(this.value); });
+	transpositionInput.addEventListener('input', function(){
+		controller.voice.transposition = parseInt(this.value);
+		controller.voice.update();
+	});
 	
 	// Setup volume slider
 	const volumeSlider = document.querySelector('input.volume');
