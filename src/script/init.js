@@ -116,7 +116,16 @@ document.querySelector('#start').addEventListener('click', function(){
 		access.inputs.forEach(input => {
 			
 			// Process MIDI messages
-			input.onmidimessage = message => controller.midi.process(message);
+			input.onmidimessage = message => {
+				controller.midi.process(message);
+				
+				// Log message
+				const data = [];
+				data.push('STATUS: '+message.data[0].toString(16)[0]);
+				if(message.data[1]) data.push('DATA1: '+message.data[1]);
+				if(message.data[2]) data.push('DATA2: '+message.data[2]);
+				console.log('%c'+data.join('\t\t'), 'color: blue');
+			}
 		});
 	}, console.error);
 });
