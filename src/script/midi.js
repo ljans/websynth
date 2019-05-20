@@ -8,10 +8,10 @@ class MIDI {
 	// Process MIDI messages
 	process(message) {
 		const [command, note, velocity] = message.data;
-		switch(command) {
+		switch(command.toString(16)[0]) {
 			
 			// "Note on"
-			case 144: {
+			case '9': {
 				if(velocity > 0) {
 					this.keyboard.key[note].attack(velocity / 127);
 					break;
@@ -21,13 +21,13 @@ class MIDI {
  			}
 			
 			// "Note off"
-			case 128: {
+			case '8': {
 				this.keyboard.key[note].release();
 				break;
 			}
 			
-			// Clock
-			case 254: {
+			// Clock/Other
+			case 'f': {
 				break;
 			}
 		}
