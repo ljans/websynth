@@ -22,7 +22,7 @@ class Visualizer {
 		// Get and draw data
 		this.analyser.getByteTimeDomainData(this.signalBuffer);
 		this.signalBuffer.forEach((value, index) => {
-			canvas.lineTo(index/(this.signalBuffer.length-1), value/256);
+			canvas.lineTo(index/(this.signalBuffer.length-1), (value - (256 - 100)/2)/100);
 		});
 		canvas.endPath();
 	}
