@@ -11,9 +11,11 @@ class Controller {
 		this.convolver = new Convolver(this.context);
 		this.speaker = new Speaker(this.context);
 		this.filter = new Filter(this.context);
+		this.microphone = new Microphone(this.context);
 		
 		// Setup system
 		this.system.chain(this.voice);
+		this.system.chain(this.microphone);
 		this.system.chain(this.convolver);
 		this.system.chain(this.filter);
 		this.system.chain(this.visualizer);
