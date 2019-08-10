@@ -53,3 +53,8 @@ fieldset {
 #manual .active.key {
 	background-color: #cf000f;
 }
+
+#samples button {
+	padding: 10px 20px;
+	margin: 10px;	
+}

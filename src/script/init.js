@@ -133,4 +133,28 @@ document.querySelector('#start').addEventListener('click', function(){
 	navigator.webkitGetUserMedia({audio: true}, stream => {
 		controller.context.createMediaStreamSource(stream).connect(controller.voice.collector);
 	}, console.error);
+	
+	// Load samples
+	const sampleBuffer = [];
+	const controlGain = [];
+	['violin', 'flute', 'trumpet', 'timpani', 'horn'].forEach(sample => {
+		sampleBuffer[sample] = controller.context.createBufferSource();
+		fetch('sample/'+sample+'.mp3').then(response => response.arrayBuffer()).then(arrayBuffer => controller.context.decodeAudioData(arrayBuffer)).then(audioBuffer => {
+			sampleBuffer[sample].buffer = audioBuffer;
+			sampleBuffer[sample].loop = true;
+			sampleBuffer[sample].start();
+		});
+			
+		// Connect to graph
+		controlGain[sample] = controller.context.createGain();
+		controlGain[sample].gain.value = 0;
+		controlGain[sample].connect(controller.voice.collector);
+		sampleBuffer[sample].connect(controlGain[sample]);
+		
+		// Add controls
+		const button = document.createElement('button');
+		button.innerHTML = sample;
+		button.addEventListener('click', () => controlGain[sample].gain.value = !controlGain[sample].gain.value);
+		document.querySelector('#samples').appendChild(button);
+	});
 });
