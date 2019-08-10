@@ -128,4 +128,9 @@ document.querySelector('#start').addEventListener('click', function(){
 			}
 		});
 	}, console.error);
+	
+	// Enable microphone input
+	navigator.webkitGetUserMedia({audio: true}, stream => {
+		controller.context.createMediaStreamSource(stream).connect(controller.voice.collector);
+	}, console.error);
 });
