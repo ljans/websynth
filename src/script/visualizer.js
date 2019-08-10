@@ -30,14 +30,14 @@ class Visualizer {
 	// Refresh frequency domain
 	refreshFrequencyDomain(canvas) {		
 		canvas.clear();
+		canvas.beginPath();
 		
 		// Get and draw data
 		this.analyser.getByteFrequencyData(this.frequencyBuffer);		
 		this.frequencyBuffer.forEach((value, index) => {
-			const x = Math.log(index+1) / Math.log(this.frequencyBuffer.length);
-			const width = Math.sqrt(1 / this.frequencyBuffer.length) / Math.pow(Math.log(index+3), 2);
-			canvas.fillRect(x, 1, width, -value/256);
+			canvas.lineTo(index/150, 1 - value/256);
 		});
+		canvas.endPath();
 	}
 	
 	// Draw loop

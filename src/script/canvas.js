@@ -34,9 +34,4 @@ class Canvas {
 	lineTo(x, y) {
 		this.context.lineTo(x*this.canvas.width, y*this.canvas.height);
 	}
-	
-	// Draw rectangle
-	fillRect(x, y, width, height) {
-		this.context.fillRect(x*this.canvas.width, y*this.canvas.height, width*this.canvas.width, height*this.canvas.height);
-	}
 }
